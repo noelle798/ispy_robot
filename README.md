@@ -9,3 +9,11 @@ In order to load them, you must edit the file `~/naoqi/preferences/autoload.ini`
     [python]
     /home/nao/modules/segmentation_module.py
     /home/nao/modules/sound_receiver_module.py
+
+Because NAO robots do not have Git, you may install this repository with the following commands. Please note that you will have to edit `autoload.ini` manually.
+
+    rm -rf modules/
+    wget -O modules.zip https://github.com/jacobbrunson/ispy_robot/archive/master.zip
+    unzip modules.zip
+    mv ispy_robot-master/ modules/
+    rm modules.zip
