@@ -16,7 +16,7 @@ class SoundReceiverModule(ALModule):
 		ALModule.__init__(self, name)
 		self.audio = ALProxy("ALAudioDevice")
 		self.data = [[]] * 4
-
+		self.count = 999999
 
 	def start_processing(self):
 		"""
@@ -50,6 +50,17 @@ class SoundReceiverModule(ALModule):
 		data = np.reshape(np.fromstring(str(buffer), dtype=np.int16), (num_channels, num_samples), 'F')
 		for i in range(num_channels):
 			self.data[i].append(data[i].tolist())
+
+		peak_value = np.max(self.data)
+
+		if peak_value > 7500:
+			self.count = 30
+
+		self.count -= 1
+
+		if self.count == 0:
+			self.check = True
+
 
 
 def main():
