@@ -140,4 +140,4 @@ def find_objects():
 
 		old_objects = new_objects
 
-	return objects
+	return [obj.angles for obj in objects]
